@@ -1,0 +1,29 @@
+{
+    "name": "lightship-core/lightship-laravel",
+    "description": "Laravel wrapper to use Lightship PHP.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lightship\\": "src/",
+            "Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khalyomede",
+            "email": "khalyomede@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "orchestra/testbench": "7.4.0",
+        "nunomaduro/collision": "6.2.0"
+    },
+    "scripts": {
+        "test": "testbench package:test"
+    },
+    "require": {
+        "lightship-core/lightship-php": "0.*"
+    }
+}
