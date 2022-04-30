@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use Lightship\Facades\Lightship;
 use Lightship\Report;
 use Lightship\Route as LightshipRoute;
+use Lightship\RuleType;
 
 class LightshipRun extends Command
 {
@@ -24,6 +25,15 @@ class LightshipRun extends Command
     {
         $routes = $this->option("route");
         $urls = $this->option("url");
+
+        if (is_string($routes)) {
+            $routes = [$routes];
+        }
+
+        if (is_string($urls)) {
+            $urls = [$urls];
+        }
+
         $lightship = Lightship::onReportedRoute(function (LightshipRoute $route, Report $report): void {
             $this->report($route, $report);
         });
@@ -63,6 +73,78 @@ class LightshipRun extends Command
 
     private function report(LightshipRoute $route, Report $report): void
     {
-        $this->line($route->path());
+        $lines = [
+            "",
+            $route->path(),
+        ];
+
+        $lines = static::addScoreLines($route, $report, $lines);
+        $lines = static::addResultLines($route, $report, $lines);
+
+        foreach ($lines as $line) {
+            $this->line($line);
+        }
+    }
+
+    private static function addScoreLines(LightshipRoute $route, Report $report, array $lines): array
+    {
+        $updatedLines = $lines;
+
+        $ruleTypes = static::ruleTypes();
+
+        foreach ($ruleTypes as $ruleType) {
+            $ruleName = static::ruleTypeName($ruleType);
+            $score = str_pad($report->score($ruleType), 3, " ", STR_PAD_LEFT);
+
+            $updatedLines[] = "  $ruleName $score";
+        }
+
+        return $updatedLines;
+    }
+
+    private static function addResultLines(LightshipRoute $route, Report $report, array $lines): array
+    {
+        $updatedLines = $lines;
+
+        $ruleTypes = static::ruleTypes();
+
+        foreach ($ruleTypes as $ruleType) {
+            $results = $report->results($ruleType);
+            $ruleName = static::ruleTypeName($ruleType);
+
+            $updatedLines[] = "";
+            $updatedLines[] = "  $ruleName";
+
+            foreach ($results as $result) {
+                $name = $result["name"];
+                $passes = $result["passes"];
+                $state = $passes ? "✔️ " : "❌";
+
+                $updatedLines[] = "    $state $name";
+            }
+        }
+
+        return $updatedLines;
+    }
+
+    private static function ruleTypes(): array
+    {
+        return [
+            RuleType::Accessibility,
+            RuleType::Performance,
+            RuleType::Security,
+            RuleType::Seo,
+        ];
+    }
+
+    private static function ruleTypeName(RuleType $ruleType): string
+    {
+        return str_pad(match ($ruleType) {
+            RuleType::Accessibility => "accessibility",
+            RuleType::Performance => "performance",
+            RuleType::Security => "security",
+            RuleType::Seo => "seo",
+            default => "unknown",
+        }, 13);
     }
 }

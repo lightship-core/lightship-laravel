@@ -14,4 +14,10 @@ class TestCase extends \Orchestra\Testbench\TestCase
             LightshipServiceProvider::class,
         ];
     }
+
+    protected function defineRoutes($router)
+    {
+        $router->get("/contact-us", fn (): string => "")
+            ->name("contact-us.index");
+    }
 }
