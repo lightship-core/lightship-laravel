@@ -34,6 +34,9 @@ class LightshipRun extends Command
             $urls = [$urls];
         }
 
+        assert(is_array($routes));
+        assert(is_array($urls));
+
         $lightship = Lightship::onReportedRoute(function (LightshipRoute $route, Report $report): void {
             $this->report($route, $report);
         });
@@ -71,7 +74,7 @@ class LightshipRun extends Command
         return 0;
     }
 
-    private function report(LightshipRoute $route, Report $report): void
+    protected function report(LightshipRoute $route, Report $report): void
     {
         $lines = [
             "",
@@ -86,7 +89,12 @@ class LightshipRun extends Command
         }
     }
 
-    private static function addScoreLines(LightshipRoute $route, Report $report, array $lines): array
+    /**
+     * @param array<string> $lines
+     *
+     * @return array<string>
+     */
+    protected static function addScoreLines(LightshipRoute $route, Report $report, array $lines): array
     {
         $updatedLines = $lines;
 
@@ -94,7 +102,7 @@ class LightshipRun extends Command
 
         foreach ($ruleTypes as $ruleType) {
             $ruleName = static::ruleTypeName($ruleType);
-            $score = str_pad($report->score($ruleType), 3, " ", STR_PAD_LEFT);
+            $score = str_pad((string) $report->score($ruleType), 3, " ", STR_PAD_LEFT);
 
             $updatedLines[] = "  $ruleName $score";
         }
@@ -102,7 +110,12 @@ class LightshipRun extends Command
         return $updatedLines;
     }
 
-    private static function addResultLines(LightshipRoute $route, Report $report, array $lines): array
+    /**
+     * @param array<string> $lines
+     *
+     * @return array<string>
+     */
+    protected static function addResultLines(LightshipRoute $route, Report $report, array $lines): array
     {
         $updatedLines = $lines;
 
@@ -116,18 +129,19 @@ class LightshipRun extends Command
             $updatedLines[] = "  $ruleName";
 
             foreach ($results as $result) {
-                $name = $result["name"];
-                $passes = $result["passes"];
-                $state = $passes ? "✔️ " : "❌";
+                $state = $result->passes ? "✔️ " : "❌";
 
-                $updatedLines[] = "    $state $name";
+                $updatedLines[] = "    $state {$result->name}";
             }
         }
 
         return $updatedLines;
     }
 
-    private static function ruleTypes(): array
+    /**
+     * @return array<RuleType>
+     */
+    protected static function ruleTypes(): array
     {
         return [
             RuleType::Accessibility,
@@ -137,7 +151,7 @@ class LightshipRun extends Command
         ];
     }
 
-    private static function ruleTypeName(RuleType $ruleType): string
+    protected static function ruleTypeName(RuleType $ruleType): string
     {
         return str_pad(match ($ruleType) {
             RuleType::Accessibility => "accessibility",

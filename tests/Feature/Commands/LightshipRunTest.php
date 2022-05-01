@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Testing\PendingCommand;
 use Lightship\Commands\LightshipRun;
 use Lightship\Facades\Lightship;
 use Tests\TestCase;
@@ -27,10 +28,13 @@ final class LightshipRunTest extends TestCase
 
         $url = $this->faker->url();
 
-        $this->artisan("lightship:run", [
+        $command = $this->artisan("lightship:run", [
             "--url" => $url,
-        ])
-            ->assertSuccessful()
+        ]);
+
+        assert($command instanceof PendingCommand);
+
+        $command->assertSuccessful()
             ->expectsOutputToContain($url)
             ->expectsOutputToContain("  accessibility  38")
             ->expectsOutputToContain("  performance    50")
@@ -72,27 +76,38 @@ final class LightshipRunTest extends TestCase
 
         Lightship::client($client);
 
-        $this->artisan(LightshipRun::class, [
+        $command = $this->artisan(LightshipRun::class, [
             "--route" => "contact-us.index",
-        ])
-            ->assertSuccessful();
+        ]);
+
+        assert($command instanceof PendingCommand);
+
+        $command->assertSuccessful();
     }
 
     public function testRaiseAnErrorIfUrlIsNotValid(): void
     {
-        $this->artisan("lightship:run", [
+        $command = $this->artisan("lightship:run", [
             "--url" => [
                 $this->faker->text(),
             ]
-        ])->assertExitCode(2);
+        ]);
+
+        assert($command instanceof PendingCommand);
+
+        $command->assertExitCode(2);
     }
 
     public function testRaiseErrorIfRouteNotFound(): void
     {
-        $this->artisan("lightship:run", [
+        $command = $this->artisan("lightship:run", [
             "--route" => [
                 $this->faker->slug(1),
             ]
-        ])->assertExitCode(1);
+        ]);
+
+        assert($command instanceof PendingCommand);
+
+        $command->assertExitCode(1);
     }
 }
