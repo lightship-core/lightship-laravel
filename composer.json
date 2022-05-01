@@ -18,10 +18,19 @@
     "minimum-stability": "stable",
     "require-dev": {
         "orchestra/testbench": "7.4.0",
-        "nunomaduro/collision": "6.2.0"
+        "nunomaduro/collision": "6.2.0",
+        "friendsofphp/php-cs-fixer": "3.8.0",
+        "thibautselingue/local-php-security-checker-installer": "1.0.3",
+        "phpstan/phpstan": "1.6.3"
     },
     "scripts": {
-        "test": "testbench package:test --coverage"
+        "analyse": "phpstan analyse",
+        "test": "testbench package:test --coverage",
+        "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
+        "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix",
+        "install-security-checker": "local-php-security-checker-installer",
+        "security-check": "local-php-security-checker",
+        "update-check": "composer outdated --strict --direct"
     },
     "require": {
         "lightship-core/lightship-php": "0.*"

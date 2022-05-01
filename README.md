@@ -111,5 +111,12 @@ class MyCommand extends Command
 ## Tests
 
 ```
+composer check-platform-reqs
+composer install
+composer run install-security-checker
+composer run analyse
 composer run test
+composer run lint
+composer run security-check
+composer run update-check
 ```
