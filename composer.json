@@ -21,7 +21,7 @@
         "nunomaduro/collision": "6.2.0"
     },
     "scripts": {
-        "test": "testbench package:test"
+        "test": "testbench package:test --coverage"
     },
     "require": {
         "lightship-core/lightship-php": "0.*"

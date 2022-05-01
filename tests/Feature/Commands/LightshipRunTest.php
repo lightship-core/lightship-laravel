@@ -28,9 +28,7 @@ final class LightshipRunTest extends TestCase
         $url = $this->faker->url();
 
         $this->artisan("lightship:run", [
-            "--url" => [
-                $url,
-            ],
+            "--url" => $url,
         ])
             ->assertSuccessful()
             ->expectsOutputToContain($url)
