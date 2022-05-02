@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] 2022-05-02
+
 ### Breaked
 
 - This package now requires Laravel 9 ([#1](https://github.com/lightship-core/lightship-laravel/issues/1)).
