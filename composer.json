@@ -34,6 +34,8 @@
         "update-check": "composer outdated --strict --direct"
     },
     "require": {
-        "lightship-core/lightship-php": "0.*"
+        "lightship-core/lightship-php": "0.*",
+        "illuminate/support": "9.*",
+        "illuminate/console": "9.*"
     }
 }
