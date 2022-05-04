@@ -37,5 +37,12 @@
         "lightship-core/lightship-php": "0.*",
         "illuminate/support": "9.*",
         "illuminate/console": "9.*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lightship\\LightshipServiceProvider"
+            ]
+        }
     }
 }
