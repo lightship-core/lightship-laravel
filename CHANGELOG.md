@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- This package's service provider will now be auto-discovered automatically so that you do not need to specify the service provider in your `config/app.php` file.
+- This package's service provider will now be auto-discovered automatically so that you do not need to specify the service provider in your `config/app.php` file ([#3](https://github.com/lightship-core/lightship-laravel/issues/3)).
 
 ## [0.2.0] 2022-05-02
 
