@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use InvalidArgumentException;
 use Lightship\Facades\Lightship;
 use Lightship\Report;
+use Lightship\Result;
 use Lightship\Route as LightshipRoute;
 use Lightship\RuleType;
 
@@ -20,6 +21,10 @@ class LightshipRun extends Command
      * @var string
      */
     protected $description = 'Scan your routes and URLs.';
+
+    protected int $passed = 0;
+    protected int $failed = 0;
+    protected float $totalDurationInSeconds = 0.0;
 
     public function handle(): int
     {
@@ -71,6 +76,8 @@ class LightshipRun extends Command
 
         $lightship->analyse();
 
+        $this->displaySummary();
+
         return 0;
     }
 
@@ -83,6 +90,8 @@ class LightshipRun extends Command
 
         $lines = static::addScoreLines($route, $report, $lines);
         $lines = static::addResultLines($route, $report, $lines);
+
+        $this->stackSummary($report);
 
         foreach ($lines as $line) {
             $this->line($line);
@@ -115,7 +124,7 @@ class LightshipRun extends Command
      *
      * @return array<string>
      */
-    protected static function addResultLines(LightshipRoute $route, Report $report, array $lines): array
+    protected function addResultLines(LightshipRoute $route, Report $report, array $lines): array
     {
         $updatedLines = $lines;
 
@@ -136,6 +145,39 @@ class LightshipRun extends Command
         }
 
         return $updatedLines;
+    }
+
+    protected function stackSummary(Report $report): void
+    {
+        $passed = collect(static::ruleTypes())
+            ->map(
+                fn (RuleType $ruleType): bool =>
+                collect($report->results($ruleType))
+                    ->map(fn (Result $result): bool => $result->passes)
+                    ->filter(fn (bool $passes): bool => $passes)
+                    ->isNotEmpty()
+            )
+            ->isNotEmpty();
+
+        if ($passed) {
+            $this->passed++;
+        } else {
+            $this->failed++;
+        }
+
+        $this->totalDurationInSeconds += $report->durationInSeconds;
+    }
+
+    protected function displaySummary(): void
+    {
+        $total = $this->passed + $this->failed;
+        $totalDurationInSeconds = round($this->totalDurationInSeconds, 2);
+
+        $this->line("");
+        $this->line("Passed   {$this->passed}");
+        $this->line("Failed   {$this->failed}");
+        $this->line("Total    $total");
+        $this->line("Duration {$totalDurationInSeconds} sec.");
     }
 
     /**
