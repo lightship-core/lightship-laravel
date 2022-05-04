@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Summary at the end of the command ([#4](https://github.com/lightship-core/lightship-laravel/issues/4)).
+
 ### Fixed
 
 - This package's service provider will now be auto-discovered automatically so that you do not need to specify the service provider in your `config/app.php` file ([#3](https://github.com/lightship-core/lightship-laravel/issues/3)).
