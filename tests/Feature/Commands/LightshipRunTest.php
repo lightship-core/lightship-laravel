@@ -36,7 +36,7 @@ final class LightshipRunTest extends TestCase
 
         $command->assertSuccessful()
             ->expectsOutputToContain($url)
-            ->expectsOutputToContain("  accessibility  38")
+            ->expectsOutputToContain("  accessibility  44")
             ->expectsOutputToContain("  performance    50")
             ->expectsOutputToContain("  security       50")
             ->expectsOutputToContain("  seo             0")
@@ -63,7 +63,10 @@ final class LightshipRunTest extends TestCase
             ->expectsOutput("    ❌ titlePresent")
             ->expectsOutput("    ❌ langPresent")
             ->expectsOutput("    ❌ linksDefineHref")
-            ->expectsOutput("    ❌ metaDescriptionPresent");
+            ->expectsOutput("    ❌ metaDescriptionPresent")
+            ->expectsOutput("Passed   0")
+            ->expectsOutput("Failed   1")
+            ->expectsOutput("Total    1");
     }
 
     public function testRunOnOneRoute(): void

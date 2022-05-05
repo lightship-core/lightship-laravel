@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "adf2a219d9ffa5e2cb175a6190d58f21",
+    "content-hash": "8b1f1c5c2cd2a1c86b3120a7f797d677",
     "packages": [
         {
             "name": "brick/math",
@@ -1467,16 +1467,16 @@
         },
         {
             "name": "lightship-core/lightship-php",
-            "version": "0.7.0",
+            "version": "0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lightship-core/lightship-php.git",
-                "reference": "13229d895dc3f4db76beacff02646f5cfaba43fc"
+                "reference": "a269edcfc6af5001be05d9d6ec1a5eb80aeeba45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lightship-core/lightship-php/zipball/13229d895dc3f4db76beacff02646f5cfaba43fc",
-                "reference": "13229d895dc3f4db76beacff02646f5cfaba43fc",
+                "url": "https://api.github.com/repos/lightship-core/lightship-php/zipball/a269edcfc6af5001be05d9d6ec1a5eb80aeeba45",
+                "reference": "a269edcfc6af5001be05d9d6ec1a5eb80aeeba45",
                 "shasum": ""
             },
             "require": {
@@ -1489,7 +1489,7 @@
                 "fakerphp/faker": "1.19.0",
                 "friendsofphp/php-cs-fixer": "3.8.0",
                 "pestphp/pest": "1.21.2",
-                "phpstan/phpstan": "1.6.5",
+                "phpstan/phpstan": "1.6.7",
                 "thibautselingue/local-php-security-checker-installer": "1.0.3"
             },
             "type": "library",
@@ -1511,9 +1511,9 @@
             "description": "Web page performance/seo/security/accessibility analysis, browser-less.",
             "support": {
                 "issues": "https://github.com/lightship-core/lightship-php/issues",
-                "source": "https://github.com/lightship-core/lightship-php/tree/0.7.0"
+                "source": "https://github.com/lightship-core/lightship-php/tree/0.7.1"
             },
-            "time": "2022-05-04T21:13:11+00:00"
+            "time": "2022-05-05T20:49:10+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6385,16 +6385,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.6.5",
+            "version": "1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "462f7651f3454f280d6a397be3290634ab937022"
+                "reference": "d41c39cb2e487663bce9bbd97c660e244b73abad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/462f7651f3454f280d6a397be3290634ab937022",
-                "reference": "462f7651f3454f280d6a397be3290634ab937022",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d41c39cb2e487663bce9bbd97c660e244b73abad",
+                "reference": "d41c39cb2e487663bce9bbd97c660e244b73abad",
                 "shasum": ""
             },
             "require": {
@@ -6420,7 +6420,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.6.5"
+                "source": "https://github.com/phpstan/phpstan/tree/1.6.7"
             },
             "funding": [
                 {
@@ -6440,7 +6440,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-04T10:49:26+00:00"
+            "time": "2022-05-04T22:55:41+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

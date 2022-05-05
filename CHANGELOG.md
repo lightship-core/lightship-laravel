@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Failed URLs/routes will now be correctly counted as failed in the summary ([#7](https://github.com/lightship-core/lightship-laravel/issues/7)).
+
 ## [0.3.0] 2022-05-04
 
 ### Added
