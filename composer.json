@@ -3,7 +3,7 @@
     "description": "Laravel wrapper to use Lightship PHP.",
     "type": "library",
     "license": "MIT",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "autoload": {
         "psr-4": {
             "Lightship\\": "src/",
