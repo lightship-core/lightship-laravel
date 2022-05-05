@@ -36,7 +36,7 @@ final class LightshipRunTest extends TestCase
 
         $command->assertSuccessful()
             ->expectsOutputToContain($url)
-            ->expectsOutputToContain("  accessibility  38")
+            ->expectsOutputToContain("  accessibility  44")
             ->expectsOutputToContain("  performance    50")
             ->expectsOutputToContain("  security       50")
             ->expectsOutputToContain("  seo             0")
