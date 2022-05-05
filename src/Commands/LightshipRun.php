@@ -150,14 +150,13 @@ class LightshipRun extends Command
     protected function stackSummary(Report $report): void
     {
         $passed = collect(static::ruleTypes())
-            ->map(
+            ->filter(
                 fn (RuleType $ruleType): bool =>
                 collect($report->results($ruleType))
-                    ->map(fn (Result $result): bool => $result->passes)
-                    ->filter(fn (bool $passes): bool => $passes)
+                    ->filter(fn (Result $result): bool => !$result->passes)
                     ->isNotEmpty()
             )
-            ->isNotEmpty();
+            ->isEmpty();
 
         if ($passed) {
             $this->passed++;

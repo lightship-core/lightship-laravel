@@ -63,7 +63,10 @@ final class LightshipRunTest extends TestCase
             ->expectsOutput("    ❌ titlePresent")
             ->expectsOutput("    ❌ langPresent")
             ->expectsOutput("    ❌ linksDefineHref")
-            ->expectsOutput("    ❌ metaDescriptionPresent");
+            ->expectsOutput("    ❌ metaDescriptionPresent")
+            ->expectsOutput("Passed   0")
+            ->expectsOutput("Failed   1")
+            ->expectsOutput("Total    1");
     }
 
     public function testRunOnOneRoute(): void
