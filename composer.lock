@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b1f1c5c2cd2a1c86b3120a7f797d677",
+    "content-hash": "81a47c59e766e9ac8e2455d1d1a5e64d",
     "packages": [
         {
             "name": "brick/math",
@@ -1467,16 +1467,16 @@
         },
         {
             "name": "lightship-core/lightship-php",
-            "version": "0.7.1",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lightship-core/lightship-php.git",
-                "reference": "a269edcfc6af5001be05d9d6ec1a5eb80aeeba45"
+                "reference": "48487c85ae3227913cbd0568cabe0c8c329f60cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lightship-core/lightship-php/zipball/a269edcfc6af5001be05d9d6ec1a5eb80aeeba45",
-                "reference": "a269edcfc6af5001be05d9d6ec1a5eb80aeeba45",
+                "url": "https://api.github.com/repos/lightship-core/lightship-php/zipball/48487c85ae3227913cbd0568cabe0c8c329f60cb",
+                "reference": "48487c85ae3227913cbd0568cabe0c8c329f60cb",
                 "shasum": ""
             },
             "require": {
@@ -1511,9 +1511,9 @@
             "description": "Web page performance/seo/security/accessibility analysis, browser-less.",
             "support": {
                 "issues": "https://github.com/lightship-core/lightship-php/issues",
-                "source": "https://github.com/lightship-core/lightship-php/tree/0.7.1"
+                "source": "https://github.com/lightship-core/lightship-php/tree/0.8.0"
             },
-            "time": "2022-05-05T20:49:10+00:00"
+            "time": "2022-05-06T20:48:26+00:00"
         },
         {
             "name": "monolog/monolog",
