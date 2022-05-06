@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Facades;
+namespace Tests\Feature\Commands;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
