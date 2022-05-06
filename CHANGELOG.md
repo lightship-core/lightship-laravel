@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- No more warning about `tests/Feature/Commands/LightshipRunTest.php` not complying with PSR-4 autoloading standard ([#10](https://github.com/lightship-core/lightship-laravel/issues/10)).
+
 ## [0.3.1] 2022-05-05
 
 ### Fixed
