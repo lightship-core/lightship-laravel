@@ -13,7 +13,7 @@ use Lightship\RuleType;
 
 class LightshipRun extends Command
 {
-    protected $signature = 'lightship:run {--r|route=* : The route to scan.} {--u|url=* : The URL to scan.}';
+    protected $signature = 'lightship:run {--r|route=* : The route to scan.} {--u|url=* : The URL to scan.} {--d|detailed : Shows the rules that passed/failed.}';
 
     /**
      * The console command description.
@@ -89,7 +89,10 @@ class LightshipRun extends Command
         ];
 
         $lines = static::addScoreLines($route, $report, $lines);
-        $lines = static::addResultLines($route, $report, $lines);
+
+        if ($this->option("detailed")) {
+            $lines = static::addResultLines($route, $report, $lines);
+        }
 
         $this->stackSummary($report);
 
