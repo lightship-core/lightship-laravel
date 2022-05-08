@@ -32,6 +32,7 @@ composer require --dev lightship-core/lightship-laravel
 
 - [Using the facade](#using-the-facade)
 - [Using the comand](#using-the-comand)
+- [Show failed/passed rules when using the command](#show-failedpassed-rules-when-using-the-command)
 
 ### Using the facade
 
@@ -106,6 +107,27 @@ class MyCommand extends Command
     ]);
   }
 }
+```
+
+### Show failed/passed rules when using the command
+
+By default, the command does not show the failed/passed rules of each URLs to save some space. If you want to show the detail, use the `--detailed` option.
+
+```bash
+php artisan lightship:run --route home.index --detailed
+```
+
+Or by calling `Artisan::call`:
+
+```php
+use Illuminate\Support\Facades\Artisan;
+
+// ...
+
+Artisan::call("lightship:run", [
+  "--route" => "home.index",
+  "--detailed" => true,
+]);
 ```
 
 ## Tests

@@ -6,9 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New `--detailed` option to show failed/pass rules for each URLs ([#11](https://github.com/lightship-core/lightship-laravel/issues/11)).
+
 ### Fixed
 
 - No more warning about `tests/Feature/Commands/LightshipRunTest.php` not complying with PSR-4 autoloading standard ([#10](https://github.com/lightship-core/lightship-laravel/issues/10)).
+
+### Breaked
+
+- `lightship:run` will not display failed/passed rules for each URLs by default ([#11](https://github.com/lightship-core/lightship-laravel/issues/11)).
 
 ## [0.3.1] 2022-05-05
 

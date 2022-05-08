@@ -30,6 +30,7 @@ final class LightshipRunTest extends TestCase
 
         $command = $this->artisan("lightship:run", [
             "--url" => $url,
+            "--detailed" => true,
         ]);
 
         assert($command instanceof PendingCommand);
@@ -64,6 +65,58 @@ final class LightshipRunTest extends TestCase
             ->expectsOutput("    ❌ langPresent")
             ->expectsOutput("    ❌ linksDefineHref")
             ->expectsOutput("    ❌ metaDescriptionPresent")
+            ->expectsOutput("Passed   0")
+            ->expectsOutput("Failed   1")
+            ->expectsOutput("Total    1");
+    }
+
+    public function testOnlyShowsUrlAndScoresWhenDetailedOptionIsNotUsed(): void
+    {
+        $client = new Client([
+            "handler" => HandlerStack::create(new MockHandler([
+                new Response(200, [], "")
+            ]))
+        ]);
+
+        Lightship::client($client);
+
+        $url = $this->faker->url();
+
+        $command = $this->artisan("lightship:run", [
+            "--url" => $url,
+        ]);
+
+        assert($command instanceof PendingCommand);
+
+        $command->assertSuccessful()
+            ->expectsOutputToContain($url)
+            ->expectsOutputToContain("  accessibility  44")
+            ->expectsOutputToContain("  performance    50")
+            ->expectsOutputToContain("  security       50")
+            ->expectsOutputToContain("  seo             0")
+            ->doesntExpectOutput("  accessibility")
+            ->doesntExpectOutput("    ❌ metaViewportPresent")
+            ->doesntExpectOutput("    ❌ useLandmarkTags")
+            ->doesntExpectOutput("    ✔️  buttonsAndLinksUseAccessibleName")
+            ->doesntExpectOutput("    ✔️  idsAreUnique")
+            ->doesntExpectOutput("    ✔️  imagesHaveAltAttributes")
+            ->doesntExpectOutput("    ❌ doctypeHtmlPresent")
+            ->doesntExpectOutput("    ❌ metaThemeColorPresent")
+            ->doesntExpectOutput("  performance  ")
+            ->doesntExpectOutput("    ❌ textCompressionEnabled")
+            ->doesntExpectOutput("    ✔️  noRedirects")
+            ->doesntExpectOutput("    ✔️  fastResponseTime")
+            ->doesntExpectOutput("    ❌ usesHttp2")
+            ->doesntExpectOutput("  security     ")
+            ->doesntExpectOutput("    ❌ xFrameOptionsPresent")
+            ->doesntExpectOutput("    ❌ strictTransportSecurityHeaderPresent")
+            ->doesntExpectOutput("    ✔️  serverHeaderHidden")
+            ->doesntExpectOutput("    ✔️  xPoweredByHidden")
+            ->doesntExpectOutput("  seo          ")
+            ->doesntExpectOutput("    ❌ titlePresent")
+            ->doesntExpectOutput("    ❌ langPresent")
+            ->doesntExpectOutput("    ❌ linksDefineHref")
+            ->doesntExpectOutput("    ❌ metaDescriptionPresent")
             ->expectsOutput("Passed   0")
             ->expectsOutput("Failed   1")
             ->expectsOutput("Total    1");
