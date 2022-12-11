@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - New `--detailed` option to show failed/pass rules for each URLs ([#11](https://github.com/lightship-core/lightship-laravel/issues/11)).
+- Support for PHP 8.2 ([#17](https://github.com/lightship-core/lightship-laravel/issues/17)).
 
 ### Fixed
 
