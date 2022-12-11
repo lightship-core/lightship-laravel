@@ -135,7 +135,6 @@ Artisan::call("lightship:run", [
 ```
 composer check-platform-reqs
 composer install
-composer run install-security-checker
 composer run analyse
 composer run test
 composer run lint
