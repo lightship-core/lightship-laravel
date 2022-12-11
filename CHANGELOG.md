@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] 2022-12-11
+
 ### Added
 
 - New `--detailed` option to show failed/pass rules for each URLs ([#11](https://github.com/lightship-core/lightship-laravel/issues/11)).
