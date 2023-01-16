@@ -141,3 +141,9 @@ composer run lint
 composer run check
 composer run updates
 ```
+
+Or
+
+```bash
+composer run all
+```
