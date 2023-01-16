@@ -30,11 +30,11 @@ composer require --dev lightship-core/lightship-laravel
 
 ## Examples
 
-- [Using the facade](#using-the-facade)
-- [Using the comand](#using-the-comand)
-- [Show failed/passed rules when using the command](#show-failedpassed-rules-when-using-the-command)
+- [1. Using the facade](#1-using-the-facade)
+- [2. Using the comand](#2-using-the-comand)
+- [3. Show failed/passed rules when using the command](#3-show-failedpassed-rules-when-using-the-command)
 
-### Using the facade
+### 1. Using the facade
 
 In this example, we will generate an array report using the Laravel facade.
 
@@ -58,7 +58,7 @@ class HomeController extends Controller
 }
 ```
 
-### Using the comand
+### 2. Using the comand
 
 In this example, we will call Lightship from the command.
 
@@ -109,7 +109,7 @@ class MyCommand extends Command
 }
 ```
 
-### Show failed/passed rules when using the command
+### 3. Show failed/passed rules when using the command
 
 By default, the command does not show the failed/passed rules of each URLs to save some space. If you want to show the detail, use the `--detailed` option.
 
