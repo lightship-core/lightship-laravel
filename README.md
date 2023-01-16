@@ -138,6 +138,6 @@ composer install
 composer run analyse
 composer run test
 composer run lint
-composer run security-check
-composer run update-check
+composer run check
+composer run updates
 ```
