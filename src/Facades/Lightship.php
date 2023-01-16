@@ -13,7 +13,7 @@ use Lightship\Lightship as BaseLightship;
  * @method static BaseLightship onReportedRoute(Closure $callback)
  * @method route(string $path, array $queries = [])
  */
-class Lightship extends Facade
+final class Lightship extends Facade
 {
     protected static function getFacadeAccessor(): string
     {

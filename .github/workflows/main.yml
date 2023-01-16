@@ -40,6 +40,9 @@ jobs:
       - name: Lint
         run: docker-compose run --rm composer run lint
 
+      - name: Modern code check
+        run: docker-compose run --rm composer run scan
+
       - name: Security check
         run: docker-compose run --rm composer run check
 
@@ -66,6 +69,9 @@ jobs:
 
       - name: Lint
         run: docker-compose run --rm composer81 run lint
+
+      - name: Modern code check
+        run: docker-compose run --rm composer81 run scan
 
       - name: Security check
         run: docker-compose run --rm composer81 run check
