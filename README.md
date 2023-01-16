@@ -138,6 +138,7 @@ composer install
 composer run analyse
 composer run test
 composer run lint
+composer run scan
 composer run check
 composer run updates
 ```

@@ -17,6 +17,7 @@ RUN apt-get update && \
     php8.2-xdebug \
     php8.2-mbstring \
     php8.2-sqlite3 \
+    php8.2-intl \
     php8.2-xml && \
     # Composer
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \

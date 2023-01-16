@@ -11,7 +11,7 @@ use Lightship\Result;
 use Lightship\Route as LightshipRoute;
 use Lightship\RuleType;
 
-class LightshipRun extends Command
+final class LightshipRun extends Command
 {
     protected $signature = 'lightship:run {--r|route=* : The route to scan.} {--u|url=* : The URL to scan.} {--d|detailed : Shows the rules that passed/failed.}';
 
@@ -22,9 +22,9 @@ class LightshipRun extends Command
      */
     protected $description = 'Scan your routes and URLs.';
 
-    protected int $passed = 0;
-    protected int $failed = 0;
-    protected float $totalDurationInSeconds = 0.0;
+    private int $passed = 0;
+    private int $failed = 0;
+    private float $totalDurationInSeconds = 0.0;
 
     public function handle(): int
     {
@@ -61,7 +61,7 @@ class LightshipRun extends Command
         }
 
         foreach ($urls as $index => $url) {
-            if (!str_starts_with($url, "http") || filter_var($url, FILTER_VALIDATE_URL) === false) {
+            if (!str_starts_with((string) $url, "http") || filter_var($url, FILTER_VALIDATE_URL) === false) {
                 $message = "The URL $url (#$index) is not a valid URL.";
 
                 report(new InvalidArgumentException($message));
@@ -81,17 +81,17 @@ class LightshipRun extends Command
         return 0;
     }
 
-    protected function report(LightshipRoute $route, Report $report): void
+    private function report(LightshipRoute $route, Report $report): void
     {
         $lines = [
             "",
             $route->path(),
         ];
 
-        $lines = static::addScoreLines($route, $report, $lines);
+        $lines = static::addScoreLines($report, $lines);
 
         if ($this->option("detailed")) {
-            $lines = static::addResultLines($route, $report, $lines);
+            $lines = static::addResultLines($report, $lines);
         }
 
         $this->stackSummary($report);
@@ -106,7 +106,7 @@ class LightshipRun extends Command
      *
      * @return array<string>
      */
-    protected static function addScoreLines(LightshipRoute $route, Report $report, array $lines): array
+    private static function addScoreLines(Report $report, array $lines): array
     {
         $updatedLines = $lines;
 
@@ -127,7 +127,7 @@ class LightshipRun extends Command
      *
      * @return array<string>
      */
-    protected function addResultLines(LightshipRoute $route, Report $report, array $lines): array
+    private function addResultLines(Report $report, array $lines): array
     {
         $updatedLines = $lines;
 
@@ -150,7 +150,7 @@ class LightshipRun extends Command
         return $updatedLines;
     }
 
-    protected function stackSummary(Report $report): void
+    private function stackSummary(Report $report): void
     {
         $passed = collect(static::ruleTypes())
             ->filter(
@@ -170,7 +170,7 @@ class LightshipRun extends Command
         $this->totalDurationInSeconds += $report->durationInSeconds;
     }
 
-    protected function displaySummary(): void
+    private function displaySummary(): void
     {
         $total = $this->passed + $this->failed;
         $totalDurationInSeconds = round($this->totalDurationInSeconds, 2);
@@ -185,7 +185,7 @@ class LightshipRun extends Command
     /**
      * @return array<RuleType>
      */
-    protected static function ruleTypes(): array
+    private static function ruleTypes(): array
     {
         return [
             RuleType::Accessibility,
@@ -195,7 +195,7 @@ class LightshipRun extends Command
         ];
     }
 
-    protected static function ruleTypeName(RuleType $ruleType): string
+    private static function ruleTypeName(RuleType $ruleType): string
     {
         return str_pad(match ($ruleType) {
             RuleType::Accessibility => "accessibility",

@@ -29,13 +29,16 @@
         "lint": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
         "format": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer --using-cache=no --allow-risky=yes fix",
         "check": "composer audit --locked --no-dev",
+        "scan": "rector process --dry-run",
+        "modernize": "rector process",
         "updates": "composer outdated --strict --direct",
-        "all": "composer run test && composer run analyse && composer run lint && composer run check && composer run updates"
+        "all": "composer run test && composer run analyse && composer run lint && composer run check && composer run scan && composer run updates"
     },
     "require": {
         "lightship-core/lightship-php": "^0.9.0",
         "illuminate/support": "9.*",
-        "illuminate/console": "9.*"
+        "illuminate/console": "9.*",
+        "rector/rector": "0.15.7"
     },
     "extra": {
         "laravel": {

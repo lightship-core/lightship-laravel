@@ -7,7 +7,7 @@ use Lightship\Commands\LightshipRun;
 use Lightship\Contracts\Lightship;
 use Lightship\Lightship as BaseLightship;
 
-class LightshipServiceProvider extends ServiceProvider
+final class LightshipServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
@@ -23,8 +23,6 @@ class LightshipServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(Lightship::class, function ($app) {
-            return new BaseLightship();
-        });
+        $this->app->singleton(Lightship::class, fn ($app): BaseLightship => new BaseLightship());
     }
 }
